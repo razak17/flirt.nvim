@@ -88,7 +88,7 @@ end
 F.move = function(dir)
     local conf = vim.api.nvim_win_get_config(0)
     if conf.relative == "" then return end
-    local row, col = conf["row"][false], conf["col"][false]
+    local row, col = conf["row"], conf["col"]
 
 	if dir == "down" and (row + conf.height) < vim.o.lines then
 		row = row + 1
@@ -100,7 +100,7 @@ F.move = function(dir)
 		col = col + 1
 	end
 
-    conf["row"][false], conf["col"][false] = row, col
+    conf["row"], conf["col"] = row, col
     vim.api.nvim_win_set_config(0, conf)
 end
 
